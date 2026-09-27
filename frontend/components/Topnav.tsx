@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Sun, Moon, Search, Share2, Plus, Bell } from "lucide-react";
 import { useTheme } from "@/components/ThemeProvider";
-import { api } from "@/lib/api";
+import { useAlerts } from "@/hooks/useAlerts";
 
 const PAGE_TITLES: Record<string, string> = {
   "/": "Overview",
@@ -33,13 +32,8 @@ function IconButton({ children, onClick, title }: { children: React.ReactNode; o
 export default function Topnav() {
   const pathname = usePathname();
   const { theme, toggle } = useTheme();
-  const [hasCritical, setHasCritical] = useState(false);
-
-  useEffect(() => {
-    api.getAlerts().then((alerts) => {
-      setHasCritical(alerts.some((a) => a.severity === "critical"));
-    });
-  }, []);
+  const { data: alerts } = useAlerts();
+  const hasCritical = alerts?.some((a) => a.severity === "critical") ?? false;
 
   const pageTitle = PAGE_TITLES[pathname] ?? "Overview";
 

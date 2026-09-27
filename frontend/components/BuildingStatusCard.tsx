@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Building } from "@/lib/api";
+import type { Building } from "@/types";
 
 type Status = { label: string; color: string };
 

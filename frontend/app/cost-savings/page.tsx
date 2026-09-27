@@ -3,6 +3,7 @@ import { api } from "@/lib/api";
 import KpiCard from "@/components/KpiCard";
 import MonthlyCostChart from "@/components/MonthlyCostChart";
 import CumulativeSavingsChart from "@/components/CumulativeSavingsChart";
+import { formatUsdCompact, formatPercent } from "@/lib/formatters";
 
 export default async function CostSavingsPage() {
   const summary = await api.getSavingsSummary();
@@ -20,28 +21,10 @@ export default async function CostSavingsPage() {
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <KpiCard
-          label="Annual Baseline"
-          value={`$${(summary.annualBaseline / 1000).toFixed(0)}k`}
-          icon={DollarSign}
-          color="#F87171"
-          valueSize={24}
-        />
-        <KpiCard
-          label="Projected Cost"
-          value={`$${(summary.annualOptimized / 1000).toFixed(0)}k`}
-          icon={Target}
-          color="#FCD34D"
-          valueSize={24}
-        />
-        <KpiCard
-          label="Total Savings"
-          value={`$${(summary.annualSavings / 1000).toFixed(0)}k`}
-          icon={TrendingDown}
-          color="#34D399"
-          valueSize={24}
-        />
-        <KpiCard label="Projected ROI" value={`${summary.roiPct}%`} icon={Leaf} color="#A78BFA" valueSize={24} />
+        <KpiCard label="Annual Baseline" value={formatUsdCompact(summary.annualBaseline)} icon={DollarSign} color="#F87171" valueSize={24} />
+        <KpiCard label="Projected Cost" value={formatUsdCompact(summary.annualOptimized)} icon={Target} color="#FCD34D" valueSize={24} />
+        <KpiCard label="Total Savings" value={formatUsdCompact(summary.annualSavings)} icon={TrendingDown} color="#34D399" valueSize={24} />
+        <KpiCard label="Projected ROI" value={formatPercent(summary.roiPct, 0)} icon={Leaf} color="#A78BFA" valueSize={24} />
       </div>
 
       <div className="p-5" style={{ borderRadius: 16, background: "var(--bg-card)", border: "1px solid var(--border-subtle)", boxShadow: "var(--shadow-card)" }}>
@@ -58,12 +41,12 @@ export default async function CostSavingsPage() {
             className="px-2.5 py-1 rounded-full"
             style={{ fontSize: 11.5, fontWeight: 560, color: "#34D399", background: "rgba(52,211,153,0.12)" }}
           >
-            ${(lastMonth.cumulativeSavings / 1000).toFixed(1)}k by year-end
+            {formatUsdCompact(lastMonth.cumulativeSavings, 1)} by year-end
           </span>
         </div>
         <CumulativeSavingsChart monthly={summary.monthly} breakEvenUsd={summary.assumedImplementationCostUsd} />
         <p style={{ fontSize: 11, color: "var(--text-muted)", marginTop: 8 }}>
-          Break-even projected in {summary.breakEvenMonth ?? "next year"}, assuming a ${(summary.assumedImplementationCostUsd / 1000).toFixed(0)}k
+          Break-even projected in {summary.breakEvenMonth ?? "next year"}, assuming a {formatUsdCompact(summary.assumedImplementationCostUsd)}
           implementation cost.
         </p>
       </div>

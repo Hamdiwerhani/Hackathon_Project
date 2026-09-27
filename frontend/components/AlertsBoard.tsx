@@ -12,7 +12,7 @@ import {
   MapPin,
   ChevronRight,
 } from "lucide-react";
-import type { Alert, AlertSeverity } from "@/lib/api";
+import type { Alert, AlertSeverity } from "@/types";
 import { relativeTime } from "@/lib/derived";
 
 type Status = "active" | "acknowledged" | "resolved";

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Building, Layers, Zap, CircleCheck, Plus } from "lucide-react";
-import { api } from "@/lib/api";
+import { useAddBuilding } from "@/hooks/useAddBuilding";
 
 const STEPS = [
   { title: "Identity", subtitle: "Basic building info" },
@@ -105,8 +105,7 @@ export default function AddBuildingWizard() {
   const [form, setForm] = useState(DEFAULT_FORM);
   const [submitted, setSubmitted] = useState(false);
   const [addedThisSession, setAddedThisSession] = useState<string[]>([]);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const addBuilding = useAddBuilding();
 
   const set = (key: keyof typeof DEFAULT_FORM) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setForm((prev) => ({ ...prev, [key]: e.target.value }));
@@ -118,10 +117,8 @@ export default function AddBuildingWizard() {
   ];
 
   const handleSubmit = async () => {
-    setSubmitting(true);
-    setError(null);
     try {
-      await api.addBuilding({
+      await addBuilding.mutateAsync({
         name: form.name,
         type: form.type,
         address: form.address,
@@ -142,9 +139,7 @@ export default function AddBuildingWizard() {
       setAddedThisSession((prev) => [...prev, form.name]);
       setSubmitted(true);
     } catch {
-      setError("Could not reach the backend. Please try again.");
-    } finally {
-      setSubmitting(false);
+      // addBuilding.isError / addBuilding.error drive the message shown below
     }
   };
 
@@ -331,7 +326,9 @@ export default function AddBuildingWizard() {
           </div>
         )}
 
-        {error && <p style={{ fontSize: 12, color: "#F87171" }}>{error}</p>}
+        {addBuilding.isError && (
+          <p style={{ fontSize: 12, color: "#F87171" }}>Could not reach the backend. Please try again.</p>
+        )}
 
         <div className="flex items-center justify-between pt-2" style={{ borderTop: "1px solid var(--border-subtle)" }}>
           <button
@@ -366,7 +363,7 @@ export default function AddBuildingWizard() {
             </button>
           ) : (
             <button
-              disabled={!stepValid[2] || submitting}
+              disabled={!stepValid[2] || addBuilding.isPending}
               onClick={handleSubmit}
               className="flex items-center gap-1.5 px-3.5 py-2 rounded-[8px]"
               style={{
@@ -374,11 +371,11 @@ export default function AddBuildingWizard() {
                 fontWeight: 540,
                 color: "#0b0b0c",
                 background: "#34D399",
-                opacity: stepValid[2] && !submitting ? 1 : 0.4,
-                cursor: stepValid[2] && !submitting ? "pointer" : "default",
+                opacity: stepValid[2] && !addBuilding.isPending ? 1 : 0.4,
+                cursor: stepValid[2] && !addBuilding.isPending ? "pointer" : "default",
               }}
             >
-              <CircleCheck size={13} /> {submitting ? "Adding..." : "Add Building"}
+              <CircleCheck size={13} /> {addBuilding.isPending ? "Adding..." : "Add Building"}
             </button>
           )}
         </div>

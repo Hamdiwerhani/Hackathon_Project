@@ -1,7 +1,7 @@
 "use client";
 
 import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis, ResponsiveContainer } from "recharts";
-import type { Building } from "@/lib/api";
+import type { Building } from "@/types";
 
 const COLORS = ["#FCD34D", "#60A5FA", "#A78BFA", "#F87171"];
 

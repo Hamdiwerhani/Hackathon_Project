@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Sparkles, X, Send, TrendingDown, TriangleAlert, Zap, Building } from "lucide-react";
-import { api, type ChatMessage } from "@/lib/api";
+import { useAssistantChat } from "@/hooks/useAssistantChat";
+import type { ChatMessage } from "@/types";
 
 const SUGGESTIONS = [
   { label: "Top savings right now", icon: TrendingDown },
@@ -18,26 +19,23 @@ export default function AriaAssistant() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([{ role: "assistant", content: GREETING }]);
   const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const chat = useAssistantChat();
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
-  }, [messages, loading]);
+  }, [messages, chat.isPending]);
 
   const send = async (text: string) => {
-    if (!text.trim() || loading) return;
+    if (!text.trim() || chat.isPending) return;
     const history = messages;
     setMessages((prev) => [...prev, { role: "user", content: text }]);
     setInput("");
-    setLoading(true);
     try {
-      const res = await api.askAssistant(text, history);
+      const res = await chat.mutateAsync({ message: text, history });
       setMessages((prev) => [...prev, { role: "assistant", content: res.reply }]);
     } catch {
       setMessages((prev) => [...prev, { role: "assistant", content: "I couldn't reach the backend just now — please try again." }]);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -92,7 +90,7 @@ export default function AriaAssistant() {
                 {m.content}
               </div>
             ))}
-            {loading && (
+            {chat.isPending && (
               <div className="px-3 py-2 self-start" style={{ fontSize: 12.5, color: "var(--text-muted)", borderRadius: 14, background: "var(--bg-card)" }}>
                 thinking...
               </div>
@@ -125,9 +123,9 @@ export default function AriaAssistant() {
             />
             <button
               onClick={() => send(input)}
-              disabled={loading}
+              disabled={chat.isPending}
               className="flex items-center justify-center shrink-0"
-              style={{ width: 34, height: 34, borderRadius: 9, background: "var(--text-primary)", color: "var(--bg-page)", opacity: loading ? 0.5 : 1 }}
+              style={{ width: 34, height: 34, borderRadius: 9, background: "var(--text-primary)", color: "var(--bg-page)", opacity: chat.isPending ? 0.5 : 1 }}
             >
               <Send size={14} />
             </button>

@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -9,16 +8,14 @@ import {
   Sparkles,
   TrendingUp,
   Bell,
-  Users,
-  FileChartColumn,
-  Settings,
   ChevronDown,
   Receipt,
   Activity,
   CirclePlus,
   LucideIcon,
 } from "lucide-react";
-import { api } from "@/lib/api";
+import { useAlerts } from "@/hooks/useAlerts";
+import { useRecommendations } from "@/hooks/useRecommendations";
 
 const NAV_ITEMS: { icon: LucideIcon; label: string; href: string }[] = [
   { icon: LayoutDashboard, label: "Overview", href: "/" },
@@ -88,20 +85,12 @@ function NavRow({
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const [criticalAlerts, setCriticalAlerts] = useState(0);
-  const [urgentRecs, setUrgentRecs] = useState(0);
+  const { data: alerts } = useAlerts();
+  const { data: recommendations } = useRecommendations();
 
-  useEffect(() => {
-    api.getAlerts().then((alerts) => {
-      setCriticalAlerts(alerts.filter((a) => a.severity === "critical").length);
-    });
-    api.getRecommendations().then((recs) => {
-      setUrgentRecs(
-        recs.filter((r) => r.priority === "Critical" || r.priority === "High")
-          .length,
-      );
-    });
-  }, []);
+  const criticalAlerts = alerts?.filter((a) => a.severity === "critical").length ?? 0;
+  const urgentRecs =
+    recommendations?.filter((r) => r.priority === "Critical" || r.priority === "High").length ?? 0;
 
   const badges: Record<string, number> = {
     "/ai-insights": urgentRecs,

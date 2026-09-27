@@ -1,7 +1,7 @@
 "use client";
 
 import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis, ResponsiveContainer, ReferenceLine } from "recharts";
-import type { MonthlyCost } from "@/lib/api";
+import type { MonthlyCost } from "@/types";
 
 function CustomTooltip({ active, payload, label }: { active?: boolean; payload?: { value: number }[]; label?: string }) {
   if (!active || !payload?.length) return null;

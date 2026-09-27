@@ -1,5 +1,5 @@
 import { Thermometer, Droplets, Wind } from "lucide-react";
-import type { Zone } from "@/lib/api";
+import type { Zone } from "@/types";
 
 const STATUS_STYLE: Record<Zone["status"], { color: string; bg: string }> = {
   Active: { color: "#34D399", bg: "rgba(52,211,153,0.12)" },

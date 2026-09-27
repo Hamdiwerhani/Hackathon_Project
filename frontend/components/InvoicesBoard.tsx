@@ -15,8 +15,9 @@ import {
   Download,
   CircleAlert,
 } from "lucide-react";
-import type { Invoice, InvoiceStatus } from "@/lib/api";
+import type { Invoice, InvoiceStatus } from "@/types";
 import KpiCard from "@/components/KpiCard";
+import { formatUsd, formatUsdCompact, formatKwhCompact, formatDateShort, formatMonthYear } from "@/lib/formatters";
 
 const STATUS_STYLE: Record<InvoiceStatus, { color: string; bg: string; icon: typeof CircleCheck }> = {
   Paid: { color: "#34D399", bg: "rgba(52,211,153,0.1)", icon: CircleCheck },
@@ -65,7 +66,7 @@ export default function InvoicesBoard({ invoices: baseInvoices }: { invoices: In
       id: `UPL-${now.getTime()}-${i}`,
       buildingId: "manual-upload",
       building,
-      period: now.toLocaleDateString("en-US", { month: "short", year: "numeric" }),
+      period: formatMonthYear(issueDate),
       issueDate,
       dueDate,
       kWh: 0,
@@ -95,10 +96,10 @@ export default function InvoicesBoard({ invoices: baseInvoices }: { invoices: In
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <KpiCard label="Total Paid" value={`$${(paidSum / 1000).toFixed(0)}k`} icon={CircleCheck} color="#34D399" valueSize={22} />
-        <KpiCard label="Outstanding" value={`$${(unpaidSum / 1000).toFixed(1)}k`} icon={Clock} color="#FCD34D" valueSize={22} />
-        <KpiCard label="Avg Monthly" value={`$${avgMonthly.toLocaleString()}`} icon={DollarSign} color="#60A5FA" valueSize={22} />
-        <KpiCard label="Total kWh" value={`${(totalKwh / 1000).toFixed(0)}k`} icon={Zap} color="#A78BFA" valueSize={22} />
+        <KpiCard label="Total Paid" value={formatUsdCompact(paidSum)} icon={CircleCheck} color="#34D399" valueSize={22} />
+        <KpiCard label="Outstanding" value={formatUsdCompact(unpaidSum, 1)} icon={Clock} color="#FCD34D" valueSize={22} />
+        <KpiCard label="Avg Monthly" value={formatUsd(avgMonthly)} icon={DollarSign} color="#60A5FA" valueSize={22} />
+        <KpiCard label="Total kWh" value={formatKwhCompact(totalKwh)} icon={Zap} color="#A78BFA" valueSize={22} />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4">
@@ -250,13 +251,13 @@ export default function InvoicesBoard({ invoices: baseInvoices }: { invoices: In
                     <Calendar size={12} /> {inv.period}
                   </span>
                   <span style={{ fontSize: 12, color: "var(--text-tertiary)" }}>
-                    {isManualUpload ? "—" : `${(inv.kWh / 1000).toFixed(1)}k`}
+                    {isManualUpload ? "—" : formatKwhCompact(inv.kWh, 1)}
                   </span>
                   <span style={{ fontSize: 12.5, fontWeight: 560, color: "var(--text-primary)" }}>
-                    {isManualUpload ? "—" : `$${inv.amount.toLocaleString()}`}
+                    {isManualUpload ? "—" : formatUsd(inv.amount)}
                   </span>
                   <span style={{ fontSize: 12, color: inv.status === "Overdue" ? "#F87171" : "var(--text-tertiary)" }}>
-                    {isManualUpload ? "Awaiting review" : new Date(inv.dueDate).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+                    {isManualUpload ? "Awaiting review" : formatDateShort(inv.dueDate)}
                   </span>
                   <span
                     className="flex items-center gap-1 px-2 py-[2px] rounded-full w-fit"

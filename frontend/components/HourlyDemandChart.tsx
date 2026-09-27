@@ -1,7 +1,7 @@
 "use client";
 
 import { Line, LineChart, CartesianGrid, Tooltip, XAxis, YAxis, ResponsiveContainer, Legend } from "recharts";
-import type { UsagePoint } from "@/lib/api";
+import type { UsagePoint } from "@/types";
 import { deriveComparisonSeries } from "@/lib/derived";
 
 export default function HourlyDemandChart({ usageKwh, seed }: { usageKwh: UsagePoint[]; seed: number }) {

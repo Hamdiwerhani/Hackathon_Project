@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { Building } from "@/lib/api";
+import type { Building } from "@/types";
 import HourlyDemandChart from "@/components/HourlyDemandChart";
 import ZonesList from "@/components/ZonesList";
 

@@ -1,4 +1,4 @@
-import type { UsagePoint } from "./api";
+import type { UsagePoint } from "@/types";
 
 // Deterministic "comparison period" derived from real usage points — same input always
 // produces the same output (unlike Math.random()), so server/client renders stay in sync

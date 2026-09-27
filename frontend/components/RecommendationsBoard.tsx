@@ -13,7 +13,8 @@ import {
   ChevronRight,
   CircleCheck,
 } from "lucide-react";
-import type { Category, Priority, Recommendation } from "@/lib/api";
+import type { Category, Priority, Recommendation } from "@/types";
+import { formatUsdCompact, formatUsd } from "@/lib/formatters";
 
 const CATEGORY_ICON: Record<Category, typeof Wind> = {
   HVAC: Wind,
@@ -101,7 +102,7 @@ export default function RecommendationsBoard({ recommendations: initial }: { rec
             Total Potential Savings
           </p>
           <p style={{ fontSize: 28, fontWeight: 720, color: "#34D399", letterSpacing: "-0.02em" }}>
-            ${(totalAnnualSavings / 1000).toFixed(0)}k
+            {formatUsdCompact(totalAnnualSavings)}
           </p>
           <p style={{ fontSize: 11.5, color: "var(--text-muted)" }}>per year</p>
         </div>
@@ -169,8 +170,8 @@ export default function RecommendationsBoard({ recommendations: initial }: { rec
                   </div>
                 </div>
                 <div className="text-right shrink-0">
-                  <p style={{ fontSize: 16, fontWeight: 680, color: "#34D399" }}>${rec.monthlySavingsUsd}/mo</p>
-                  <p style={{ fontSize: 11, color: "var(--text-muted)" }}>${rec.annualSavingsUsd}/yr</p>
+                  <p style={{ fontSize: 16, fontWeight: 680, color: "#34D399" }}>{formatUsd(rec.monthlySavingsUsd)}/mo</p>
+                  <p style={{ fontSize: 11, color: "var(--text-muted)" }}>{formatUsd(rec.annualSavingsUsd)}/yr</p>
                 </div>
               </div>
 
