@@ -1,0 +1,548 @@
+{
+  "buildings": [
+    {
+      "id": "bldg-01",
+      "name": "Science Hall",
+      "hvacSetpointC": 19,
+      "costPerKwh": 0.14,
+      "expectedIdleKwh": 6,
+      "floors": 5,
+      "zones": [
+        {
+          "zone": "Lecture Hall A",
+          "floor": "Floor 1",
+          "temp": 22,
+          "humidity": 45,
+          "fanPct": 60,
+          "status": "Active"
+        },
+        {
+          "zone": "Physics Labs",
+          "floor": "Floor 2",
+          "temp": 20.5,
+          "humidity": 40,
+          "fanPct": 70,
+          "status": "Active"
+        },
+        {
+          "zone": "Faculty Offices",
+          "floor": "Floor 3",
+          "temp": 21.5,
+          "humidity": 42,
+          "fanPct": 35,
+          "status": "Eco Mode"
+        },
+        {
+          "zone": "Server Closet",
+          "floor": "Floor 1",
+          "temp": 18,
+          "humidity": 38,
+          "fanPct": 90,
+          "status": "Cooling"
+        }
+      ],
+      "usageKwh": [
+        {
+          "timestamp": "2026-09-27T00:00:00.000Z",
+          "kwh": 21.1
+        },
+        {
+          "timestamp": "2026-09-27T01:00:00.000Z",
+          "kwh": 20.9
+        },
+        {
+          "timestamp": "2026-09-27T02:00:00.000Z",
+          "kwh": 20.6
+        },
+        {
+          "timestamp": "2026-09-27T03:00:00.000Z",
+          "kwh": 20.4
+        },
+        {
+          "timestamp": "2026-09-27T04:00:00.000Z",
+          "kwh": 21.6
+        },
+        {
+          "timestamp": "2026-09-27T05:00:00.000Z",
+          "kwh": 20.4
+        },
+        {
+          "timestamp": "2026-09-27T06:00:00.000Z",
+          "kwh": 6.8
+        },
+        {
+          "timestamp": "2026-09-27T07:00:00.000Z",
+          "kwh": 16.1
+        },
+        {
+          "timestamp": "2026-09-27T08:00:00.000Z",
+          "kwh": 25.5
+        },
+        {
+          "timestamp": "2026-09-27T09:00:00.000Z",
+          "kwh": 33.7
+        },
+        {
+          "timestamp": "2026-09-27T10:00:00.000Z",
+          "kwh": 41
+        },
+        {
+          "timestamp": "2026-09-27T11:00:00.000Z",
+          "kwh": 46.6
+        },
+        {
+          "timestamp": "2026-09-27T12:00:00.000Z",
+          "kwh": 51.4
+        },
+        {
+          "timestamp": "2026-09-27T13:00:00.000Z",
+          "kwh": 54.1
+        },
+        {
+          "timestamp": "2026-09-27T14:00:00.000Z",
+          "kwh": 54.9
+        },
+        {
+          "timestamp": "2026-09-27T15:00:00.000Z",
+          "kwh": 54.3
+        },
+        {
+          "timestamp": "2026-09-27T16:00:00.000Z",
+          "kwh": 51.1
+        },
+        {
+          "timestamp": "2026-09-27T17:00:00.000Z",
+          "kwh": 46.7
+        },
+        {
+          "timestamp": "2026-09-27T18:00:00.000Z",
+          "kwh": 40.8
+        },
+        {
+          "timestamp": "2026-09-27T19:00:00.000Z",
+          "kwh": 33.8
+        },
+        {
+          "timestamp": "2026-09-27T20:00:00.000Z",
+          "kwh": 25.4
+        },
+        {
+          "timestamp": "2026-09-27T21:00:00.000Z",
+          "kwh": 16.2
+        },
+        {
+          "timestamp": "2026-09-27T22:00:00.000Z",
+          "kwh": 6.8
+        },
+        {
+          "timestamp": "2026-09-27T23:00:00.000Z",
+          "kwh": 21.5
+        }
+      ]
+    },
+    {
+      "id": "bldg-02",
+      "name": "Library",
+      "hvacSetpointC": 21,
+      "costPerKwh": 0.14,
+      "expectedIdleKwh": 4,
+      "floors": 3,
+      "zones": [
+        {
+          "zone": "Reading Hall",
+          "floor": "Floor 1",
+          "temp": 21,
+          "humidity": 44,
+          "fanPct": 50,
+          "status": "Active"
+        },
+        {
+          "zone": "Archive Stacks",
+          "floor": "Floor 2",
+          "temp": 19.5,
+          "humidity": 35,
+          "fanPct": 30,
+          "status": "Standby"
+        },
+        {
+          "zone": "Study Rooms",
+          "floor": "Floor 3",
+          "temp": 21.8,
+          "humidity": 43,
+          "fanPct": 40,
+          "status": "Eco Mode"
+        }
+      ],
+      "usageKwh": [
+        {
+          "timestamp": "2026-09-27T00:00:00.000Z",
+          "kwh": 4.5
+        },
+        {
+          "timestamp": "2026-09-27T01:00:00.000Z",
+          "kwh": 4.3
+        },
+        {
+          "timestamp": "2026-09-27T02:00:00.000Z",
+          "kwh": 4.4
+        },
+        {
+          "timestamp": "2026-09-27T03:00:00.000Z",
+          "kwh": 4.6
+        },
+        {
+          "timestamp": "2026-09-27T04:00:00.000Z",
+          "kwh": 4.4
+        },
+        {
+          "timestamp": "2026-09-27T05:00:00.000Z",
+          "kwh": 4.6
+        },
+        {
+          "timestamp": "2026-09-27T06:00:00.000Z",
+          "kwh": 4.3
+        },
+        {
+          "timestamp": "2026-09-27T07:00:00.000Z",
+          "kwh": 11.5
+        },
+        {
+          "timestamp": "2026-09-27T08:00:00.000Z",
+          "kwh": 18.2
+        },
+        {
+          "timestamp": "2026-09-27T09:00:00.000Z",
+          "kwh": 24.2
+        },
+        {
+          "timestamp": "2026-09-27T10:00:00.000Z",
+          "kwh": 29.6
+        },
+        {
+          "timestamp": "2026-09-27T11:00:00.000Z",
+          "kwh": 33.9
+        },
+        {
+          "timestamp": "2026-09-27T12:00:00.000Z",
+          "kwh": 37.4
+        },
+        {
+          "timestamp": "2026-09-27T13:00:00.000Z",
+          "kwh": 39.3
+        },
+        {
+          "timestamp": "2026-09-27T14:00:00.000Z",
+          "kwh": 40.1
+        },
+        {
+          "timestamp": "2026-09-27T15:00:00.000Z",
+          "kwh": 39.4
+        },
+        {
+          "timestamp": "2026-09-27T16:00:00.000Z",
+          "kwh": 37.3
+        },
+        {
+          "timestamp": "2026-09-27T17:00:00.000Z",
+          "kwh": 34.1
+        },
+        {
+          "timestamp": "2026-09-27T18:00:00.000Z",
+          "kwh": 29.7
+        },
+        {
+          "timestamp": "2026-09-27T19:00:00.000Z",
+          "kwh": 24.1
+        },
+        {
+          "timestamp": "2026-09-27T20:00:00.000Z",
+          "kwh": 18.2
+        },
+        {
+          "timestamp": "2026-09-27T21:00:00.000Z",
+          "kwh": 11.4
+        },
+        {
+          "timestamp": "2026-09-27T22:00:00.000Z",
+          "kwh": 4.6
+        },
+        {
+          "timestamp": "2026-09-27T23:00:00.000Z",
+          "kwh": 4.5
+        }
+      ]
+    },
+    {
+      "id": "bldg-03",
+      "name": "Engineering Building",
+      "hvacSetpointC": 18,
+      "costPerKwh": 0.14,
+      "expectedIdleKwh": 8,
+      "floors": 6,
+      "zones": [
+        {
+          "zone": "CNC Workshop",
+          "floor": "Floor 1",
+          "temp": 23,
+          "humidity": 48,
+          "fanPct": 85,
+          "status": "Active"
+        },
+        {
+          "zone": "Robotics Lab",
+          "floor": "Floor 2",
+          "temp": 20,
+          "humidity": 40,
+          "fanPct": 65,
+          "status": "Active"
+        },
+        {
+          "zone": "Lecture Rooms",
+          "floor": "Floor 3",
+          "temp": 21.5,
+          "humidity": 42,
+          "fanPct": 38,
+          "status": "Eco Mode"
+        },
+        {
+          "zone": "Server Room",
+          "floor": "Floor B",
+          "temp": 17.5,
+          "humidity": 30,
+          "fanPct": 95,
+          "status": "Cooling"
+        }
+      ],
+      "usageKwh": [
+        {
+          "timestamp": "2026-09-27T00:00:00.000Z",
+          "kwh": 8.8
+        },
+        {
+          "timestamp": "2026-09-27T01:00:00.000Z",
+          "kwh": 9.3
+        },
+        {
+          "timestamp": "2026-09-27T02:00:00.000Z",
+          "kwh": 9.1
+        },
+        {
+          "timestamp": "2026-09-27T03:00:00.000Z",
+          "kwh": 9.2
+        },
+        {
+          "timestamp": "2026-09-27T04:00:00.000Z",
+          "kwh": 8.8
+        },
+        {
+          "timestamp": "2026-09-27T05:00:00.000Z",
+          "kwh": 9
+        },
+        {
+          "timestamp": "2026-09-27T06:00:00.000Z",
+          "kwh": 8.8
+        },
+        {
+          "timestamp": "2026-09-27T07:00:00.000Z",
+          "kwh": 21.1
+        },
+        {
+          "timestamp": "2026-09-27T08:00:00.000Z",
+          "kwh": 32.6
+        },
+        {
+          "timestamp": "2026-09-27T09:00:00.000Z",
+          "kwh": 43.2
+        },
+        {
+          "timestamp": "2026-09-27T10:00:00.000Z",
+          "kwh": 52.1
+        },
+        {
+          "timestamp": "2026-09-27T11:00:00.000Z",
+          "kwh": 59.7
+        },
+        {
+          "timestamp": "2026-09-27T12:00:00.000Z",
+          "kwh": 65.6
+        },
+        {
+          "timestamp": "2026-09-27T13:00:00.000Z",
+          "kwh": 68.9
+        },
+        {
+          "timestamp": "2026-09-27T14:00:00.000Z",
+          "kwh": 160.5
+        },
+        {
+          "timestamp": "2026-09-27T15:00:00.000Z",
+          "kwh": 68.5
+        },
+        {
+          "timestamp": "2026-09-27T16:00:00.000Z",
+          "kwh": 65.4
+        },
+        {
+          "timestamp": "2026-09-27T17:00:00.000Z",
+          "kwh": 59.9
+        },
+        {
+          "timestamp": "2026-09-27T18:00:00.000Z",
+          "kwh": 52.4
+        },
+        {
+          "timestamp": "2026-09-27T19:00:00.000Z",
+          "kwh": 42.9
+        },
+        {
+          "timestamp": "2026-09-27T20:00:00.000Z",
+          "kwh": 32.3
+        },
+        {
+          "timestamp": "2026-09-27T21:00:00.000Z",
+          "kwh": 21.2
+        },
+        {
+          "timestamp": "2026-09-27T22:00:00.000Z",
+          "kwh": 9
+        },
+        {
+          "timestamp": "2026-09-27T23:00:00.000Z",
+          "kwh": 9.2
+        }
+      ]
+    },
+    {
+      "id": "bldg-04",
+      "name": "Student Union",
+      "hvacSetpointC": 20,
+      "costPerKwh": 0.14,
+      "expectedIdleKwh": 5,
+      "floors": 4,
+      "zones": [
+        {
+          "zone": "Cafeteria",
+          "floor": "Floor 1",
+          "temp": 22.5,
+          "humidity": 50,
+          "fanPct": 55,
+          "status": "Active"
+        },
+        {
+          "zone": "Gym",
+          "floor": "Floor 2",
+          "temp": 20,
+          "humidity": 55,
+          "fanPct": 80,
+          "status": "Active"
+        },
+        {
+          "zone": "Admin Offices",
+          "floor": "Floor 3",
+          "temp": 21,
+          "humidity": 40,
+          "fanPct": 30,
+          "status": "Standby"
+        }
+      ],
+      "usageKwh": [
+        {
+          "timestamp": "2026-09-27T00:00:00.000Z",
+          "kwh": 16.6
+        },
+        {
+          "timestamp": "2026-09-27T01:00:00.000Z",
+          "kwh": 17.6
+        },
+        {
+          "timestamp": "2026-09-27T02:00:00.000Z",
+          "kwh": 16.6
+        },
+        {
+          "timestamp": "2026-09-27T03:00:00.000Z",
+          "kwh": 18
+        },
+        {
+          "timestamp": "2026-09-27T04:00:00.000Z",
+          "kwh": 17.7
+        },
+        {
+          "timestamp": "2026-09-27T05:00:00.000Z",
+          "kwh": 16.7
+        },
+        {
+          "timestamp": "2026-09-27T06:00:00.000Z",
+          "kwh": 5.5
+        },
+        {
+          "timestamp": "2026-09-27T07:00:00.000Z",
+          "kwh": 14
+        },
+        {
+          "timestamp": "2026-09-27T08:00:00.000Z",
+          "kwh": 21.9
+        },
+        {
+          "timestamp": "2026-09-27T09:00:00.000Z",
+          "kwh": 29.3
+        },
+        {
+          "timestamp": "2026-09-27T10:00:00.000Z",
+          "kwh": 35.7
+        },
+        {
+          "timestamp": "2026-09-27T11:00:00.000Z",
+          "kwh": 40.8
+        },
+        {
+          "timestamp": "2026-09-27T12:00:00.000Z",
+          "kwh": 44.9
+        },
+        {
+          "timestamp": "2026-09-27T13:00:00.000Z",
+          "kwh": 47.1
+        },
+        {
+          "timestamp": "2026-09-27T14:00:00.000Z",
+          "kwh": 48.1
+        },
+        {
+          "timestamp": "2026-09-27T15:00:00.000Z",
+          "kwh": 47.1
+        },
+        {
+          "timestamp": "2026-09-27T16:00:00.000Z",
+          "kwh": 44.9
+        },
+        {
+          "timestamp": "2026-09-27T17:00:00.000Z",
+          "kwh": 40.7
+        },
+        {
+          "timestamp": "2026-09-27T18:00:00.000Z",
+          "kwh": 35.5
+        },
+        {
+          "timestamp": "2026-09-27T19:00:00.000Z",
+          "kwh": 29.3
+        },
+        {
+          "timestamp": "2026-09-27T20:00:00.000Z",
+          "kwh": 21.8
+        },
+        {
+          "timestamp": "2026-09-27T21:00:00.000Z",
+          "kwh": 13.7
+        },
+        {
+          "timestamp": "2026-09-27T22:00:00.000Z",
+          "kwh": 5.6
+        },
+        {
+          "timestamp": "2026-09-27T23:00:00.000Z",
+          "kwh": 17.3
+        }
+      ]
+    }
+  ]
+}
