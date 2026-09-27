@@ -5,7 +5,10 @@ const { detectAlertsForBuildings } = require('../services/alertEngine');
 
 const router = express.Router();
 
-// simple in-memory cache so a demo doesn't re-call the AI on every refresh
+// Cache only real AI-generated results so a demo doesn't re-call Groq on every
+// refresh. A fallback result is deliberately NOT cached, so a transient
+// failure (rate limit, network blip) gets retried on the next request
+// instead of permanently sticking the app on the fallback.
 let cache = null;
 
 router.get('/', async (req, res) => {
@@ -13,7 +16,7 @@ router.get('/', async (req, res) => {
 
   const buildings = loadBuildings();
   const alerts = detectAlertsForBuildings(buildings);
-  const suggestions = await getPortfolioRecommendations(buildings, alerts);
+  const { suggestions, usedFallback } = await getPortfolioRecommendations(buildings, alerts);
 
   const result = suggestions.map((s, i) => ({
     id: `rec-${i}`,
@@ -21,7 +24,7 @@ router.get('/', async (req, res) => {
     ...s,
   }));
 
-  cache = result;
+  if (!usedFallback) cache = result;
   res.json(result);
 });
 

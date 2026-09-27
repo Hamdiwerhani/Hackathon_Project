@@ -110,7 +110,7 @@ const TOOL_DEFINITIONS = [
   },
 ];
 
-function executeTool(name, args) {
+async function executeTool(name, args) {
   const buildings = loadBuildings();
 
   switch (name) {
@@ -122,7 +122,8 @@ function executeTool(name, args) {
 
     case 'get_recommendations': {
       const alerts = detectAlertsForBuildings(buildings);
-      return getPortfolioRecommendations(buildings, alerts);
+      const { suggestions } = await getPortfolioRecommendations(buildings, alerts);
+      return suggestions;
     }
 
     case 'get_invoices': {

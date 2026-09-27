@@ -107,7 +107,7 @@ async function getPortfolioRecommendations(buildings, alerts) {
   const apiKey = process.env.GROQ_API_KEY;
 
   if (!apiKey) {
-    return fallbackRecommendations(buildings, alerts);
+    return { suggestions: fallbackRecommendations(buildings, alerts), usedFallback: true };
   }
 
   const summary = buildings.map((b) => {
@@ -153,10 +153,10 @@ Base savings estimates on the given cost-per-kWh and usage figures so they are r
     const parsed = JSON.parse(jsonMatch[0]);
     if (!Array.isArray(parsed) || parsed.length === 0) throw new Error('Empty AI response');
 
-    return parsed;
+    return { suggestions: parsed, usedFallback: false };
   } catch (err) {
     console.error('AI recommendations failed, using fallback:', err.message);
-    return fallbackRecommendations(buildings, alerts);
+    return { suggestions: fallbackRecommendations(buildings, alerts), usedFallback: true };
   }
 }
 
